@@ -259,7 +259,7 @@ public class ManteniminetoAlumnos extends javax.swing.JInternalFrame {
             txt_correo.setText("");
             
 
-            label_status.setText("Alumno de Clientes exitoso.");
+            label_status.setText("Alumno de  exitoso.");
         } catch (Exception e) {
 
         }
