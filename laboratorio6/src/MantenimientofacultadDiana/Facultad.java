@@ -7,6 +7,9 @@ package MantenimientofacultadDiana;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,11 +41,12 @@ public class Facultad extends javax.swing.JFrame {
         txtcodigo = new javax.swing.JTextField();
         txtnombrefacultad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtestado = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        Label_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -64,7 +68,7 @@ public class Facultad extends javax.swing.JFrame {
 
         jLabel5.setText("Codigo");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 121, -1, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 215, 150, -1));
+        getContentPane().add(txtestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 215, 150, -1));
 
         jButton1.setText("REGISTRAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -75,43 +79,131 @@ public class Facultad extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
 
         jButton2.setText("MODIFICAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, -1, -1));
 
         jButton3.setText("ELIMINAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 90, -1));
 
         jButton4.setText("BUSCAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 90, -1));
+
+        Label_status.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        getContentPane().add(Label_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // REGISTRAR
-         try {
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/laboratory","root","");
+            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/LaboratorySIU","root","");
 
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/laboratory","root","");
-            java.sql.PreparedStatement pst = cn.prepareStatement("insert into registroproducto values(?,?,?,?)");
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/LaboratorySIU","root","");
+            java.sql.PreparedStatement pst = cn.prepareStatement("insert into facultad values(?,?,?,?)");
 
-            // pst.setString(1, "0");
-            pst.setString(1, txtpelicula.getText().trim());
-            pst.setString(2, txtclasificacion.getSelectedItem().toString());
-            pst.setString(3, txtvalor.getText().trim());
-            
+            pst.setString(1, "0");
+            pst.setString(2, txtcodigo.getText().trim());
+            pst.setString(3, txtnombrefacultad.getText().trim());   
+            pst.setString(4, txtestado.getText().trim());
+           
             pst.executeUpdate();
 
-            txtpelicula.setText("");
-            txtclasificacion.setSelectedItem("");
-            txtvalor.setText("");
+            
+            txtcodigo.setText("");
+            txtnombrefacultad.setText("");
+            txtestado.setText(""); 
            
-            Label_status.setText("Regiatro exitoso");
+
+            Label_status.setText("Registro exitoso");
 
         } catch (Exception e) {
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Modificar
+      try {
+            String ID = txtid.getText().trim();
+
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/laboratorysFM1", "root", "");
+            PreparedStatement pst = cn.prepareStatement("update registroclientes set Codigo_Facultad=?, nombreFacultad=?, Estado_Facultad=?,CodigoCorreo = ?, CodigoDireccion = ?, CodigoTelefono = ? where ID = " + ID);
+
+            
+            pst.setString(1, txtcodigo.getText().trim());
+            pst.setString(2, txtnombrefacultad.getText().trim());
+            pst.setString(3, txtestado.getText().trim());
+            
+           
+            pst.executeUpdate();
+
+            Label_status.setText("Modificación exitosa.");
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // ELIMINAR
+       try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LaboratorySIU", "root", "");
+            PreparedStatement pst = cn.prepareStatement("delete from facultad where ID = ?");
+
+            pst.setString(1, txtid.getText().trim());
+            pst.executeUpdate();
+            txtcodigo.setText("");
+            txtnombrefacultad.setText("");
+            txtestado.setText("");
+            
+            
+
+            Label_status.setText("Registro eliminado.");
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // BUSCAR
+         try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LaboratorySIU", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from facultad where ID = ?");
+            pst.setString(1, txtid.getText().trim());
+
+            ResultSet rs = pst.executeQuery();
+
+            if(rs.next()){
+                
+                txtcodigo.setText(rs.getString("CodigoNombre"));
+                txtnombrefacultad.setText(rs.getString("CodigoApellido"));
+                txtestado.setText(rs.getString("Edad"));
+               
+               
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Persona no registrada.");
+            }
+
+        }catch (Exception e){
+
+    }    
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,6 +242,7 @@ public class Facultad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Label_status;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -159,8 +252,8 @@ public class Facultad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField txtcodigo;
+    private javax.swing.JTextField txtestado;
     private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnombrefacultad;
     // End of variables declaration//GEN-END:variables

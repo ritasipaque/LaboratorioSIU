@@ -1,3 +1,6 @@
+
+import MantenimientofacultadDiana.Facultad;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -58,7 +61,12 @@ public class lab extends javax.swing.JFrame {
         jMenu1.setText("Catalogos");
         jMenu1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Facultad");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -97,6 +105,13 @@ public class lab extends javax.swing.JFrame {
         // salir de sistema
         dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        Facultad frm = new Facultad();
+         frm.setVisible(true);
+         this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
