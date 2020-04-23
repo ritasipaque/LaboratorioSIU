@@ -9,7 +9,7 @@
  * @author familia Sipaque
  */
 public class lab extends javax.swing.JFrame {
-
+private Secciones ventanaSecciones;
     /**
      * Creates new form lab
      */
@@ -58,7 +58,12 @@ public class lab extends javax.swing.JFrame {
         jMenu1.setText("Catalogos");
         jMenu1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Mantenimiento Secciones");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -97,6 +102,11 @@ public class lab extends javax.swing.JFrame {
         // salir de sistema
         dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ventanaSecciones=new Secciones();
+        jDesktopPane1.add(ventanaSecciones);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
