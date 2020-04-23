@@ -9,7 +9,11 @@
  * @author familia Sipaque
  */
 public class lab extends javax.swing.JFrame {
+<<<<<<< HEAD
 private Secciones ventanaSecciones;
+=======
+private ManteniminetoAlumnos nuevaventana1;
+>>>>>>> SipaqueR
     /**
      * Creates new form lab
      */
@@ -58,7 +62,11 @@ private Secciones ventanaSecciones;
         jMenu1.setText("Catalogos");
         jMenu1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
 
+<<<<<<< HEAD
         jMenuItem2.setText("Mantenimiento Secciones");
+=======
+        jMenuItem2.setText("Mantenimineto Alumnos(sipaque)");
+>>>>>>> SipaqueR
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -104,8 +112,16 @@ private Secciones ventanaSecciones;
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+<<<<<<< HEAD
         ventanaSecciones=new Secciones();
         jDesktopPane1.add(ventanaSecciones);
+=======
+        // TODO add your handling code here:
+        
+        nuevaventana1= new ManteniminetoAlumnos();   
+     jDesktopPane1.add(nuevaventana1); 
+        
+>>>>>>> SipaqueR
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**

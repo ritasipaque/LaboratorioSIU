@@ -22,7 +22,11 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
+<<<<<<< HEAD
                 <Property name="text" type="java.lang.String" value="Mantenimiento Secciones"/>
+=======
+                <Property name="text" type="java.lang.String" value="Mantenimineto Alumnos(sipaque)"/>
+>>>>>>> SipaqueR
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
